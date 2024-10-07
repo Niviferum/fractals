@@ -9,7 +9,7 @@ import matplotlib.cm
 
 @dataclass
 
-class MandelbrotSet:
+class MandelbrotSet: #defining the Mandelbrot set, transforming from maths formula to python code
     max_iterations: int
     escape_radius: float = 2.0
 
@@ -32,7 +32,7 @@ class MandelbrotSet:
 
 
 @dataclass
-class Viewport:
+class Viewport: #defining the viewport, the area of the image that we want to see
     image: Image.Image
     center: complex
     width: float
@@ -55,8 +55,7 @@ class Viewport:
                 yield Pixel(self, x, y)
 
 @dataclass
-class Pixel:
-    viewport: Viewport
+class Pixel: #defining the pixel, so the image can be painted
     x: int
     y: int
 
@@ -75,13 +74,13 @@ class Pixel:
             + self.viewport.offset
         )
     
-def paint(mandelbrot_set, viewport, palette, smooth):
+def paint(mandelbrot_set, viewport, palette, smooth): #painting the image
     for pixel in viewport:
         stability = mandelbrot_set.stability(complex(pixel), smooth)
         index = int(min(stability * len(palette), len(palette) - 1))
         pixel.color = palette[index % len(palette)]
 
-def denormalize(palette):
+def denormalize(palette): #getting the RGB values back
     return [
         tuple(int(channel * 255) for channel in color)
         for color in palette
@@ -94,10 +93,10 @@ RGB = 'RGB'
 
 image = Image.new(RGB, (width, height))    
 
-mandelbrot_set = MandelbrotSet(max_iterations=256, escape_radius=1000)
+mandelbrot_set = MandelbrotSet(max_iterations=256, escape_radius=1000) #here you can modify the max_iterations and escape_radius to get different results
 viewport = Viewport(image, center=-0.7435 + 0.1314j, width=0.002)
 
-colormap = matplotlib.cm.get_cmap('cividis').colors
+colormap = matplotlib.cm.get_cmap('cividis').colors #here you can change the colormap to get different colors
 palette = denormalize(colormap)
 
 paint(mandelbrot_set, viewport, palette, smooth=True)
