@@ -12,7 +12,7 @@ Whenever you're setup, you only need to run the program to get an image to be ge
 The default image will be a z=256 iteration, with a 1000 escape radius. If you want to modify the pattern of the fractal, you can play with these two numbers at line 97. 
 Caution : the bigger the number, the longer it will take to generate it, as the formula is quite complex and depending on how powerful your computer is, it might take several seconds, to a few minutes. 
 
-# How to change the color theme ?
+## How to change the color theme ?
 
 By default, you have the "cividis" color theme. You might want something different, so here is how you can change it :
 
