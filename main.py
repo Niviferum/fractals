@@ -56,6 +56,7 @@ class Viewport: #defining the viewport, the area of the image that we want to se
 
 @dataclass
 class Pixel: #defining the pixel, so the image can be painted
+    viewport: Viewport
     x: int
     y: int
 
